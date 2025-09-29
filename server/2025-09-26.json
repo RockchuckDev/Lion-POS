@@ -1,0 +1,20 @@
+[
+  {
+    "time": "11-36-30",
+    "cashOrCard": "card",
+    "orderCost": "37.5",
+    "egg": 3,
+    "SUPER egg": 1,
+    "Gatorade": 1,
+    "silly goober guy (small)": 1
+  },
+  {
+    "time": "11-36-48",
+    "cashOrCard": "cash",
+    "orderCost": "123",
+    "egg": 1,
+    "SUPER egg": 5,
+    "Gatorade": 2,
+    "silly goober guy (small)": 2
+  }
+]

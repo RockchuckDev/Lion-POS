@@ -1,0 +1,37 @@
+<!--  checkout.html-->
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/client/default.css"></link>
+    <link rel="icon" href="/favicon.png" type="image/x-icon"></link>
+</head>
+<div class="container">
+
+    <div class="left">
+
+        <h1>Checkout</h1>
+        <h2 id="cartCost"></h2>
+        <button id="oneButton">1</button>
+        <button id="fiveButton">5</button>
+        <button id="tenButton">10</button>
+        <button id="twentyButton">20</button>
+        <button id="fiftyButton">50</button>
+        <button id="hundredButton">100</button>
+        <button id="cardButton">Card</button>
+    </div>
+    <div class="right">
+
+        <h1>Change</h1>
+        <h1 id="changeDisplay"></h1>
+
+
+    </div>
+    
+
+
+</div>
+<button onclick="window.location.href='/'">Edit Cart</button>
+<button id="newOrder">New Order</button>
+<p>New order resets cart, cartCost, and saves order amount and items in order to server</p>
+
+
+<script type="module" src="client/checkout.js"></script>

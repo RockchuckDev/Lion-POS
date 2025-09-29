@@ -1,0 +1,29 @@
+#orderCost {
+    color: #eac51a;
+}
+
+
+body{
+    background-color: #548d3c;
+}
+
+.container{
+    display: flex;
+
+}
+
+.left{
+    flex: 1;
+    background-color: goldenrod;
+}
+
+.right{
+    flex: 1;
+    background-color: lightseagreen;
+    
+}
+
+.product{
+    background-color: #eac51a;
+    margin: 1%;
+}
