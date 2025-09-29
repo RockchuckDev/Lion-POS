@@ -124,3 +124,5 @@ function updateCartCost(){
     priceElement = document.getElementById("orderCost");
     priceElement.innerHTML = cartCost;
 }
+
+//testing comitting to new branch
