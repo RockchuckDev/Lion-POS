@@ -32,13 +32,11 @@ function addNewProduct(){
         let newJson = oldJson;
         newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value)});
 
-        fetch("http://localhost:3000/overwriteJson", {
+        fetch("http://localhost:3000/overwriteProductsJson", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newJson)
         });
-
-        fetch("http://localhost:3000/updateOrderTemplate", {});
 
         UpdateLocalProductArray();    
 }

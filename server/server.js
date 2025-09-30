@@ -66,8 +66,6 @@ app.get('/manageProducts', (request, response) =>{
 
 })
 
-//JUST LET ME PUSH TO MAIN!!!
-
 app.get('/ordersJson', (req, res) =>{
 
     readFile("server/orders.json", "utf-8", (err, json) =>{
@@ -109,36 +107,6 @@ app.post('/postOrder', (req, res) =>{
     writeFileSync(`server/${returnDate()}.json`, JSON.stringify(currentFileContents, null, 2));
     res.send("Success!!!");
 
-})
-
-app.get('/updateOrderTemplate', (req, res) =>{
-
-    let template = [];
-    let productsJson = JSON.parse(readFileSync("server/products.json", "utf8"));
-
-    productsJson.forEach(element => {
-        template.push({[element.name] : 0})
-    })   
-        
-
-    console.log(template);
-
-    try{
-        writeFileSync("server/orderTemplate.json", JSON.stringify(template, null, 2));
-        res.send("Success writing file");
-    }catch (err){
-        res.status(500).send("Error writing file");
-    }
-
-})
-
-app.get("/orderTemplateJson", (req, res) =>{
-    
-    try{
-        res.send(readFileSync("/server/orderTemplate.json", "utf8"));
-    }catch{
-        res.status(500).send("Error reading orderTemplate.json");
-    }
 })
 
 app.listen(3000, () => console.log("Available on localhost:3000"));

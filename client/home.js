@@ -1,7 +1,6 @@
 //home.js
-
-import { Product } from '../classes.js';
 import { createAndAppendElement } from "/client/helpfulFunctions.js";
+import { returnProductsJsonAsArray } from "/client/helpfulFunctions.js";
 
 
 const cartCostElement = document.getElementById("orderCost");
@@ -15,26 +14,26 @@ let rawProductsJson = [];
 returnProductsJsonAsArray()
     .then(array => {
         rawProductsJson = array;
-        if(sessionStorage.getItem("cart").trim() != ""){
+        if(sessionStorage.getItem("cart") != null && sessionStorage.getItem("cart").trim() != ""){
             orderWithMetadata = (JSON.parse(sessionStorage.getItem("cart")));
         }else{
             orderWithMetadata.time = "null";
             orderWithMetadata.cashOrCard = "null";
             orderWithMetadata.orderCost = "null";
-            array.forEach(element => {
+            rawProductsJson.forEach(element => {
                 orderWithMetadata[element.name] = 0;
+                console.log(element.name);
             })
         }
     }).then(thingy => {
         for(let key in orderWithMetadata){
-            console.log(key);
             if(key != "time" && key != "orderCost" && key != "cashOrCard"){
                 let newitemButton = document.createElement('button');
                 newitemButton.innerHTML = `${key}`;
                 newitemButton.addEventListener("click", () => {
-                orderWithMetadata[key] += 1;
-                updateCartHtml();
-                updateCartCost();
+                    orderWithMetadata[key] += 1;
+                    updateCartHtml();
+                    console.log(orderWithMetadata);
                 })
                 let elementOfList = document.createElement("li");
                 elementOfList.appendChild(newitemButton);
@@ -42,8 +41,6 @@ returnProductsJsonAsArray()
             }
         }
     updateCartHtml();
-    updateCartCost();
-
 })
 
 
@@ -62,10 +59,8 @@ function updateCartHtml(){
         cartElement.children[i].remove();
     }
 
-
     for(let key in orderWithMetadata){
         if(orderWithMetadata[key] > 0){
-
             const box = document.createElement("div");
             cartElement.appendChild(box);
             box.className = "product";
@@ -74,36 +69,31 @@ function updateCartHtml(){
             rawProductsJson.forEach(element => {
                 if(element.name == key){
                     itemPrice = element.price;
-
-                }
-            })
-
-            createAndAppendElement("p", `${key}`, box).className = "itemNames";
-            createAndAppendElement("p", `${itemPrice}`, box).className = "itemCost";
-            createAndAppendElement("p", `In Cart: ${orderWithMetadata[key]}`, box);
-            createAndAppendElement("button", "Remove All", box).addEventListener("click", () =>
-                {
-                orderWithMetadata[key] = 0;
-                updateCartHtml();
-
-                })
+                    createAndAppendElement("p", `${key}`, box).className = "itemNames";
+                    createAndAppendElement("p", `${itemPrice}`, box).className = "itemCost";
+                    createAndAppendElement("p", `In Cart: ${orderWithMetadata[key]}`, box);
+                    createAndAppendElement("button", "Remove All", box).addEventListener("click", () =>
+                        {
+                            orderWithMetadata[key] = 0;
+                            updateCartHtml();
+                        })
             
-            createAndAppendElement("button", "-1", box).addEventListener("click", () =>
-                {
-                orderWithMetadata[key]-=1;
-                updateCartHtml();
+                    createAndAppendElement("button", "-1", box).addEventListener("click", () =>
+                        {
+                            orderWithMetadata[key]-=1;
+                            updateCartHtml();
+                        })
 
-                })
-
-            createAndAppendElement("button", "+1", box).addEventListener("click", () =>
-                {
-                orderWithMetadata[key]+=1;
-                updateCartHtml();
-                })
+                    createAndAppendElement("button", "+1", box).addEventListener("click", () =>
+                        {
+                            orderWithMetadata[key]+=1;
+                            updateCartHtml();
+                        })
+                }
+            })            
         }
     }
     updateCartCost();
-
 }
 
 
@@ -121,8 +111,6 @@ function updateCartCost(){
             cartCost += orderWithMetadata[key] * itemPrice;
         }
     }
-    priceElement = document.getElementById("orderCost");
     priceElement.innerHTML = cartCost;
 }
 
-//testing comitting to new branch

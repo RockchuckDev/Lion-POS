@@ -1,4 +1,4 @@
-
+//helpfulFuncitons.js
 
 export function createAndAppendElement(elementType, elementInnerHTML, preexistingParentElementToAppendTo){
     let newElement = document.createElement(`${elementType}`);
@@ -10,7 +10,7 @@ export function createAndAppendElement(elementType, elementInnerHTML, preexistin
 export function returnProductsJsonAsString(){
 
     let toReturn = "";
-    fetch("/productsJson")
+    fetch("/productsJSON")
     .then(fetchedJson => toReturn = fetchedJson);
     return toReturn;
 }
@@ -27,4 +27,9 @@ export function returnDate(){
 
 export function returnTime(){
     return new Date().toTimeString().split(' ')[0].replace(/:/g, "-");
+}
+
+export function returnProductsJsonAsArray(){
+    return fetch('/productsJSON')
+    .then(fetchedJson => fetchedJson.json());
 }

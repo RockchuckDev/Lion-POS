@@ -1,3 +1,10 @@
 [
-
+  {
+    "name": "goober",
+    "price": 3.5
+  },
+  {
+    "name": "squid",
+    "price": 5
+  }
 ]
