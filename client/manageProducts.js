@@ -6,6 +6,7 @@ import { createAndAppendElement } from "/client/helpfulFunctions.js";
 let nameInput = document.getElementById("newItemNameInput");
 let priceInput = document.getElementById("newProductPriceInput");
 const submitProduct = document.getElementById("submitNewProductButton");
+const newProductImageLinkInput = document.getElementById("newProductImageLinkInput");
 
 let productsJsonObject = [];
 
@@ -27,10 +28,8 @@ submitProduct.addEventListener("click", () => {
 
 
 function addNewProduct(){
-
-        let oldJson = productsJsonObject;
-        let newJson = oldJson;
-        newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value)});
+        let newJson = productsJsonObject;
+        newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value), "image": `${newProductImageLinkInput.value}`});
 
         fetch("http://localhost:3000/overwriteProductsJson", {
             method: "POST",
@@ -63,8 +62,7 @@ function UpdateProductsListHtml(){
         createAndAppendElement("p", `${element.name}`, box);
         createAndAppendElement("p", `${element.price}`, box);
         createAndAppendElement("button", "delete This Item", box).addEventListener("click", () =>{
-
-            productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
+        productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
             fetch("http://localhost:3000/updateOrderTemplate", {});
             UpdateProductsListHtml();
             OverwriteProductsJsonObject();

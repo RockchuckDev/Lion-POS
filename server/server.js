@@ -1,5 +1,4 @@
 //server.js
-import { Product } from '../classes.js';
 import { readFile, writeFile, writeFileSync, existsSync } from 'fs';
 import { readFileSync  } from 'fs';
 import express, { response } from 'express';

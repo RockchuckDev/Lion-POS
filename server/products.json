@@ -1,10 +1,27 @@
 [
   {
-    "name": "goober",
-    "price": 3.5
+    "name": "Airheads",
+    "price": 3.5,
+    "image": "https://pics.walgreens.com/prodimg/542350/900.jpg"
   },
   {
-    "name": "squid",
-    "price": 5
+    "name": "Chips",
+    "price": 2,
+    "image": "https://images.albertsons-media.com/is/image/ABS/960323044-ECOM?$ng-ecom-pdp-desktop$&defaultImage=Not_Available"
+  },
+  {
+    "name": "Coffee",
+    "price": 2,
+    "image": "https://media.istockphoto.com/id/1143290013/photo/coffee-cup-isolated.jpg?s=612x612&w=0&k=20&c=fEsmHH_kDh-vPxukZuaMs54D0kg2BTEDgS8lnWu8bBs="
+  },
+  {
+    "name": "Mocha Frapp",
+    "price": 5,
+    "image": "https://i5.walmartimages.com/seo/Starbucks-Frappuccino-Mocha-Iced-Coffee-Drink-13-7-fl-oz-Bottle_8ee1c854-1c7b-4c9d-b4db-8ba088d7e5da.812e8d1918fd6ece177599dca9779618.jpeg"
+  },
+  {
+    "name": "Vanilla Frapp",
+    "price": 5,
+    "image": "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/product-images/zoom/00012000813313_1"
   }
 ]

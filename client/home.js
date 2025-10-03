@@ -30,6 +30,15 @@ returnProductsJsonAsArray()
             if(key != "time" && key != "orderCost" && key != "cashOrCard"){
                 let newitemButton = document.createElement('button');
                 newitemButton.innerHTML = `${key}`;
+                let image = document.createElement("img");
+                rawProductsJson.forEach(element => {
+                    if(element.name == key){
+                        image.src = element.image;
+                    }
+                });
+                image.style.width = "200px";
+                image.style.height = "200px";
+                newitemButton.prepend(image);
                 newitemButton.addEventListener("click", () => {
                     orderWithMetadata[key] += 1;
                     updateCartHtml();
