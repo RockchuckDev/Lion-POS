@@ -10,6 +10,7 @@ let cartCost = 0;
 
 let orderWithMetadata = {};
 let rawProductsJson = [];
+let currentProductPage = 0;
 
 returnProductsJsonAsArray()
     .then(array => {

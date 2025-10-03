@@ -40,6 +40,10 @@ app.get('/checkout', (req, res) =>{
     })
 })
 
+app.get('/productTypes', (req, res) =>{
+    readFile("server/")
+})
+
 
 app.get('/', (request, response) => {
 
@@ -96,14 +100,14 @@ app.post('/postOrder', (req, res) =>{
 
     let currentFileContents = [];
 
-    if(existsSync(`server/${returnDate()}.json`)){
-        currentFileContents = JSON.parse(readFileSync(`server/${returnDate()}.json`, "utf-8"));
+    if(existsSync(`orders/${returnDate()}.json`)){
+        currentFileContents = JSON.parse(readFileSync(`orders/${returnDate()}.json`, "utf-8"));
     }
     
     currentFileContents.push(req.body);
     console.log(req.body);
     
-    writeFileSync(`server/${returnDate()}.json`, JSON.stringify(currentFileContents, null, 2));
+    writeFileSync(`orders/${returnDate()}.json`, JSON.stringify(currentFileContents, null, 2));
     res.send("Success!!!");
 
 })
