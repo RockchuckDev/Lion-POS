@@ -31,7 +31,7 @@ function addNewProduct(){
         let newJson = productsJsonObject;
         newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value), "image": `${newProductImageLinkInput.value}`});
 
-        fetch("http://localhost:3000/overwriteProductsJson", {
+        fetch("/overwriteProductsJson", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newJson)
@@ -63,7 +63,7 @@ function UpdateProductsListHtml(){
         createAndAppendElement("p", `${element.price}`, box);
         createAndAppendElement("button", "delete This Item", box).addEventListener("click", () =>{
         productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
-            fetch("http://localhost:3000/updateOrderTemplate", {});
+            fetch("/updateOrderTemplate", {});
             UpdateProductsListHtml();
             OverwriteProductsJsonObject();
             
@@ -72,7 +72,7 @@ function UpdateProductsListHtml(){
 }
 
 function OverwriteProductsJsonObject(){
-    fetch("http://localhost:3000/overwriteProductsJson", {
+    fetch("/overwriteProductsJson", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(productsJsonObject)
@@ -80,7 +80,7 @@ function OverwriteProductsJsonObject(){
 }
 
 function UpdateLocalProductArray(){
-    fetch('http://localhost:3000/productsJSON')
+    fetch('/productsJSON')
     .then(fetchedData => fetchedData.json())
     .then(jsonObject => {
         productsJsonObject = jsonObject;

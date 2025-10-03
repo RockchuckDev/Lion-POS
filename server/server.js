@@ -108,4 +108,4 @@ app.post('/postOrder', (req, res) =>{
 
 })
 
-app.listen(3000, () => console.log("Available on localhost:3000"));
+app.listen(3000, '0.0.0.0', () => console.log("Available on localhost:3000"));

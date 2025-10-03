@@ -1,8 +1,52 @@
 [
   {
-    "time": "08-57-42",
+    "time": "09-23-30",
     "cashOrCard": "cash",
-    "orderCost": "2500",
-    "Red gatorade": 5
+    "orderCost": "13",
+    "Airheads": 2,
+    "Chips": 2,
+    "Coffee": 1,
+    "Mocha Frapp": 0,
+    "Vanilla Frapp": 0
+  },
+  {
+    "time": "09-29-14",
+    "cashOrCard": "cash",
+    "orderCost": "24.5",
+    "Airheads": 1,
+    "Chips": 2,
+    "Coffee": 1,
+    "Mocha Frapp": 3,
+    "Vanilla Frapp": 0
+  },
+  {
+    "time": "09-33-53",
+    "cashOrCard": "cash",
+    "orderCost": "23.5",
+    "Airheads": 5,
+    "Chips": 2,
+    "Coffee": 1,
+    "Mocha Frapp": 0,
+    "Vanilla Frapp": 0
+  },
+  {
+    "time": "09-34-09",
+    "cashOrCard": "card",
+    "orderCost": "42",
+    "Airheads": 12,
+    "Chips": 0,
+    "Coffee": 0,
+    "Mocha Frapp": 0,
+    "Vanilla Frapp": 0
+  },
+  {
+    "time": "09-41-25",
+    "cashOrCard": "card",
+    "orderCost": "38.5",
+    "Airheads": 7,
+    "Chips": 7,
+    "Coffee": 0,
+    "Mocha Frapp": 0,
+    "Vanilla Frapp": 0
   }
 ]

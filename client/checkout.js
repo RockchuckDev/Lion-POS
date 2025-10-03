@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newOrderButton.addEventListener('click', () =>{
             orderWithMetadata.time = returnTime();
 
-            fetch("http://localhost:3000/postOrder", {
+            fetch("/postOrder", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(orderWithMetadata)
