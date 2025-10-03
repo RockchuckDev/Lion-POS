@@ -44,6 +44,7 @@ returnProductsJsonAsArray()
                     updateCartHtml();
                     console.log(orderWithMetadata);
                 })
+                newitemButton.className = "gridButton";
                 let elementOfList = document.createElement("li");
                 elementOfList.appendChild(newitemButton);
                 document.getElementById("productsList").appendChild(elementOfList);

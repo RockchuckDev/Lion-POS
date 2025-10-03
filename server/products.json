@@ -23,5 +23,160 @@
     "name": "Vanilla Frapp",
     "price": 5,
     "image": "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/product-images/zoom/00012000813313_1"
+  },
+  {
+    "name": "Gatorade Blue",
+    "price": 3,
+    "image": "https://target.scene7.com/is/image/Target/GUEST_0cd6e036-8181-49e9-8bd1-2b3801c6347c"
+  },
+  {
+    "name": "Gatorade Red",
+    "price": 3,
+    "image": "https://www.kroger.com/product/images/xlarge/front/0005200012247"
+  },
+  {
+    "name": "Gatorade Yellow",
+    "price": 3,
+    "image": "https://i5.walmartimages.com/seo/2X-Gatorade-Thirst-Quencher-Yellow-Lemon-Lime-Electrolyte-Enhanced-Sports-Drink-20-fl-oz_4b92b8ea-ebfc-4007-bb3a-24f6e8013d47.485b80dbf606a4cfb35f2cc406db3c9d.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+  },
+  {
+    "name": "Gummy Bears",
+    "price": 3.5,
+    "image": "https://pics.walgreens.com/prodimg/413256/900.jpg"
+  },
+  {
+    "name": "Hot Cocoa",
+    "price": 2,
+    "image": "https://www.bunsenburnerbakery.com/wp-content/uploads/2017/11/decadently-thick-hot-chocolate-square-31-735x735.jpg"
+  },
+  {
+    "name": "Hotdog",
+    "price": 6,
+    "image": "https://media.istockphoto.com/id/165933107/photo/hot-diggity-dog-for-halloween.jpg?s=612x612&w=0&k=20&c=ie2cXRo-J3ehMuFBPIEmxD1qnldPAFAzxvqEYRoAD68="
+  },
+  {
+    "name": "Hotdog Meal Deal",
+    "price": 10,
+    "image": ""
+  },
+  {
+    "name": "Lotus Blue",
+    "price": 5,
+    "image": "https://www.kroger.com/product/images/large/front/0085000488468"
+  },
+  {
+    "name": "Lotus Pink",
+    "price": 5,
+    "image": "https://lotusplantpower.com/cdn/shop/files/Pink_Lotus_Plant_Power_Drink_Zero_Sugar_Can_Front_and_Nutrition_Facts.jpg?v=1745006712"
+  },
+  {
+    "name": "M&Ms",
+    "price": 2.5,
+    "image": "https://cdn11.bigcommerce.com/s-xun5w23utl/images/stencil/1280x1280/products/6053/10324/mandm-bulk-candy__17276.1607808998.jpg?c=1"
+  },
+  {
+    "name": "Meat Stick",
+    "price": 3.5,
+    "image": "https://m.media-amazon.com/images/I/71VP-xAkR8L._UF1000,1000_QL80_.jpg"
+  },
+  {
+    "name": "Baja Blast",
+    "price": 3,
+    "image": "https://target.scene7.com/is/image/Target/GUEST_20f4bfb6-068e-4a71-a8f2-0c324411f030"
+  },
+  {
+    "name": "Mountain Dew Normal",
+    "price": 3,
+    "image": "https://i5.walmartimages.com/seo/Mountain-Dew-Citrus-Soda-Pop-20-fl-oz-Bottle-Allergens-Not-Contained_0fda60c7-f636-4ee8-89c6-5d113966c263.b8f60fe0941948e9bf2a56af9f4a1690.jpeg"
+  },
+  {
+    "name": "Nachos",
+    "price": 5,
+    "image": "https://131257649.cdn6.editmysite.com/uploads/1/3/1/2/131257649/Z4IYR3LIUUEIL3AT77HRACGE.jpeg"
+  },
+  {
+    "name": "Orange Crush",
+    "price": 3,
+    "image": "https://images.albertsons-media.com/is/image/ABS/960049081-C1N1?$ng-ecom-pdp-mobile$&defaultImage=Not_Available"
+  },
+  {
+    "name": "Peach Rings",
+    "price": 3.5,
+    "image": "https://wernerjerky.com/cdn/shop/files/80061_Peach-Rings_WEB-2.png?v=1736981632"
+  },
+  {
+    "name": "Pepsi Diet",
+    "price": 3,
+    "image": "https://i5.walmartimages.com/seo/Diet-Pepsi-Cola-Soda-Pop-20-fl-oz-Bottle_b396c8e8-8703-41ec-9438-c4edc55f10a6.2682b3f14a34996dbc0fd4fdf033aa96.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+  },
+  {
+    "name": "Pepsi Regular",
+    "price": 3,
+    "image": "https://target.scene7.com/is/image/Target/GUEST_857e6ec2-76b4-4b70-9ffd-1ef223ce4613"
+  },
+  {
+    "name": "Pink Lemonade",
+    "price": 3,
+    "image": "https://images.albertsons-media.com/is/image/ABS/960555791-ECOM?$ng-ecom-pdp-mobile$&defaultImage=Not_Available"
+  },
+  {
+    "name": "Pizza Cheese",
+    "price": 6,
+    "image": "https://www.thebrooklynpizza.com/wp-content/uploads/2020/09/Cheese.png"
+  },
+  {
+    "name": "Pizza Pepperoni",
+    "price": 6,
+    "image": "https://images.albertsons-media.com/is/image/ABS/970344767?$ng-ecom-pdp-mobile$&defaultImage=Not_Available"
+  },
+  {
+    "name": "Pizza Meal Deal",
+    "price": 10,
+    "image": ""
+  },
+  {
+    "name": "Popcorn",
+    "price": 3,
+    "image": "https://media.istockphoto.com/id/1023284100/photo/3d-rendering-of-a-square-striped-popcorn-bucket-filled-with-this-snack-over-the-brim-on-a.jpg?s=612x612&w=0&k=20&c=-pmKx57LsjboWpWexVLHBuUFImQHTI-5ZZHxBhWVLGc="
+  },
+  {
+    "name": "Red Vines",
+    "price": 3.5,
+    "image": "https://i5.walmartimages.com/seo/Red-Vines-Twists-Original-Red-Candy-4-0-oz_e2337578-0fb7-410c-8ee2-87ed75ebfb5e.75ba1e0c1b314dd157e4f4cee79c0d86.jpeg"
+  },
+  {
+    "name": "Root Beer",
+    "price": 3,
+    "image": "https://www.kroger.com/product/images/xlarge/front/0001200000910"
+  },
+  {
+    "name": "Skittles",
+    "price": 2.5,
+    "image": "https://i5.walmartimages.com/seo/Skittles-Original-Chewy-Candy-Full-Size-2-17-oz-Bag_9c05242d-b8bf-47a3-ac8d-bfbdd709dc8a.d90e5dd4464032c6ac9ade58ee7f7e90.jpeg"
+  },
+  {
+    "name": "Snickers",
+    "price": 2.5,
+    "image": "https://www.snickers.com/cdn-cgi/image/width=600,height=600,f=auto,quality=90/sites/g/files/fnmzdf616/files/migrate-product-files/dryeqrv2efldaaoyceat.png"
+  },
+  {
+    "name": "Sour Worms",
+    "price": 3.5,
+    "image": "https://wernerjerky.com/cdn/shop/files/80062_Sour-Neon-Worms_WEB-2.png?v=1737042825"
+  },
+  {
+    "name": "Starry",
+    "price": 3,
+    "image": "https://storage.googleapis.com/images-cub-prd-9400d55.cub.prd.v8.commerce.mi9cloud.com/product-images/zoom/da771476-2415-445e-9219-55d0d7f5a606.jpeg"
+  },
+  {
+    "name": "Twix",
+    "price": 2.5,
+    "image": "https://i5.walmartimages.com/seo/Twix-Caramel-Full-Size-Chocolate-Cookie-Candy-Bars-1-79-oz-Bar_e0581047-983d-48de-8e1b-da7ccd82209f.95ab125cd47927ae2915c1c26540e7b9.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+  },
+  {
+    "name": "Water",
+    "price": 2,
+    "image": "https://i5.walmartimages.com/asr/c5dda0a3-dc8a-4778-9680-7a039d75fb1b.22b1cac539e687d9d8e31384df3fa1c3.jpeg"
   }
 ]
