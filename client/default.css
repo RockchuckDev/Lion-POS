@@ -34,7 +34,24 @@ body{
     
 }
 
+.leftEven{
+    flex: 1;
+    background-color: honeydew;
+}
+
+.rightEven{
+    flex: 1;
+    background-color: chartreuse;
+    gap: 4px;
+    
+}
+
 .product{
-    background-color: #eac51a;
+    background-color: #eac51a; 
     margin: 1%;
+}
+
+.closeTogether{
+    margin: 5px;
+    padding: 0px;
 }
