@@ -54,32 +54,36 @@ function UpdateProductsListHtml(){
         productListElement.appendChild(parentBox);
         parentBox.classList.add("container");
         parentBox.classList.add("product");
+        parentBox.style.height = "175px";
         
         const leftBox = document.createElement("div");
         parentBox.appendChild(leftBox);
         leftBox.classList.add("leftEven");
         leftBox.classList.add("container");
 
-        const itemInfoDiv = createAndAppendElement("div", "", leftBox);
-        itemInfoDiv.className = "leftEven";
+        const productInfoDiv = createAndAppendElement("div", "", leftBox);
+        productInfoDiv.className = "leftEven";
 
-        const itemImageDiv = createAndAppendElement("div", "", leftBox);
-        itemImageDiv.className = "rightEven";
+        const productImageDiv = createAndAppendElement("div", "", leftBox);
+        productImageDiv.className = "rightEven";
 
         const rightBox = document.createElement("div");
         parentBox.appendChild(rightBox);
         rightBox.className = "rightEven";
 
-        createAndAppendElement("p", `${element.name}`, itemInfoDiv);
-        createAndAppendElement("p", `${element.price}`, itemInfoDiv);
-        createAndAppendElement("button", "delete This Item", itemInfoDiv).addEventListener("click", () =>{
+        createAndAppendElement("p", `${element.name}`, productInfoDiv);
+        createAndAppendElement("p", `${element.price}`, productInfoDiv);
+        createAndAppendElement("button", "delete This Item", productInfoDiv).addEventListener("click", () =>{
         productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
             UpdateProductsListHtml();
             OverwriteProductsJsonObject();
             
         })
+        const productImage = document.createElement("img");
+        productImage.src = element.image;
+        productImage.className = "scaleToAvailableSpace";
+        productImageDiv.appendChild(productImage);
         
-
         
         // Name
         createAndAppendElement("p", `New Name`, rightBox).className = "closeTogether";
