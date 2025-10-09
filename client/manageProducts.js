@@ -10,14 +10,20 @@ const newProductImageLinkInput = document.getElementById("newProductImageLinkInp
 const productListElement = document.getElementById("productListElement");
 
 let productsJsonObject = [];
+let productTypes = {};
 
 document.addEventListener("DOMContentLoaded", () =>{
 
     const leftColumn = document.getElementById("leftColumn");
-    
+    fetch("/productTypes")
+    .then(response => response.json())
+    .then(object => productTypes = object)
+    .then(thingy => {
+        LoadRemoteProductsJsonIntoLocalArray();
+        UpdateProductsListHtml();
+    })
 
-    LoadRemoteProductsJsonIntoLocalArray();
-    UpdateProductsListHtml();
+    
 
 })
 
@@ -67,12 +73,9 @@ function UpdateProductsListHtml(){
         const productImageDiv = createAndAppendElement("div", "", leftBox);
         productImageDiv.className = "rightEven";
 
-        const rightBox = document.createElement("div");
-        parentBox.appendChild(rightBox);
-        rightBox.className = "rightEven";
-
         createAndAppendElement("p", `${element.name}`, productInfoDiv);
         createAndAppendElement("p", `${element.price}`, productInfoDiv);
+        createAndAppendElement("p", `${element.type}`, productInfoDiv);
         createAndAppendElement("button", "delete This Item", productInfoDiv).addEventListener("click", () =>{
         productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
             UpdateProductsListHtml();
@@ -83,35 +86,58 @@ function UpdateProductsListHtml(){
         productImage.src = element.image;
         productImage.className = "scaleToAvailableSpace";
         productImageDiv.appendChild(productImage);
-        
+
+        const rightBox = document.createElement("div");
+        parentBox.appendChild(rightBox);
+        rightBox.classList.add("rightEven");
+        rightBox.classList.add("container");
+        const namePriceLinkHalf = createAndAppendElement("div", "", rightBox);
+        namePriceLinkHalf.classList.add("leftEven");
         
         // Name
-        createAndAppendElement("p", `New Name`, rightBox).className = "closeTogether";
-        const newNameInput = createAndAppendElement("input", "", rightBox);
+        createAndAppendElement("p", `New Name`, namePriceLinkHalf).className = "closeTogether";
+        const newNameInput = createAndAppendElement("input", "", namePriceLinkHalf);
         newNameInput.className = "closeTogether";
-        createAndAppendElement("button", "Submit", rightBox).addEventListener("click", () => {
+        createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.name = newNameInput.value;
             UpdateProductsListHtml();
             OverwriteProductsJsonObject();
         });
 
-        createAndAppendElement("p", `New Price`, rightBox).className = "closeTogether";
-        const newPriceInput = createAndAppendElement("input", "", rightBox);
+        createAndAppendElement("p", `New Price`, namePriceLinkHalf).className = "closeTogether";
+        const newPriceInput = createAndAppendElement("input", "", namePriceLinkHalf);
         newPriceInput.className = "closeTogether";
-        createAndAppendElement("button", "Submit", rightBox).addEventListener("click", () => {
+        createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.price = parseFloat(newPriceInput.value) || 0;
             UpdateProductsListHtml();
         OverwriteProductsJsonObject();
         });
         
-        createAndAppendElement("p", `New Image Link`, rightBox).className = "closeTogether";
-        const newImageInput = createAndAppendElement("input", "", rightBox);
+        createAndAppendElement("p", `New Image Link`, namePriceLinkHalf).className = "closeTogether";
+        const newImageInput = createAndAppendElement("input", "", namePriceLinkHalf);
         newImageInput.className = "closeTogether";
-        createAndAppendElement("button", "Submit", rightBox).addEventListener("click", () => {
+        createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.image = newImageInput.value;
             UpdateProductsListHtml();
             OverwriteProductsJsonObject();
         });
+
+        const typeHalf = createAndAppendElement("div", "", rightBox);
+        typeHalf.classList.add("rightEven");
+        const dropDown = createAndAppendElement("select", "", typeHalf);
+        dropDown.style.width = "100px";
+        for(let key in productTypes){
+            const option = document.createElement("option");
+            option.textContent = productTypes[key];
+            option.value = productTypes[key];
+            dropDown.appendChild(option);
+        }
+        const changeTypeButton = createAndAppendElement("button", "Submit Type Change", typeHalf);
+        changeTypeButton.addEventListener('click', () =>{
+            element.type = dropDown.value;
+            OverwriteProductsJsonObject();
+            UpdateProductsListHtml();
+        })
 
 
     });

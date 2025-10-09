@@ -11,9 +11,17 @@ let cartCost = 0;
 let orderWithMetadata = {};
 let rawProductsJson = [];
 let currentProductPage = 0;
+let productTypes = [];
+const productsListElement = document.getElementById('productsList');
+let productTypeParentElements = [];
+let productTypeButtonsParentElement = document.getElementById("productTypeButtonsParent");
+let activeProductTypeDiv = "";
+
+
 
 returnProductsJsonAsArray()
     .then(array => {
+
         rawProductsJson = array;
         if(sessionStorage.getItem("cart") != null && sessionStorage.getItem("cart").trim() != ""){
             orderWithMetadata = (JSON.parse(sessionStorage.getItem("cart")));
@@ -26,7 +34,28 @@ returnProductsJsonAsArray()
                 console.log(element.name);
             })
         }
-    }).then(thingy => {
+    }).then(thingy1 =>{
+        fetch("/productTypes")
+        .then(responseObject => responseObject.json())
+        .then(jsonObject => productTypes = jsonObject)
+        .then(thingy => {
+
+            for(let typeKey in productTypes){
+                let newDiv = createAndAppendElement("div", "", productsListElement);
+                newDiv.id = `${productTypes[typeKey]}`;
+                newDiv.className = "grid";
+                productTypeParentElements.push(newDiv);
+                const newButton = createAndAppendElement("button", `${productTypes[typeKey]}`, productTypeButtonsParentElement);
+                newButton.addEventListener("click", () => {
+                    activeProductTypeDiv = `${productTypes[typeKey]}`;
+                    hideInactiveDivs();
+                })
+                createAndAppendElement("br", "", productsListElement);
+                
+            }
+
+            
+
         for(let key in orderWithMetadata){
             if(key != "time" && key != "orderCost" && key != "cashOrCard"){
                 let newitemButton = document.createElement('button');
@@ -46,14 +75,23 @@ returnProductsJsonAsArray()
                     console.log(orderWithMetadata);
                 })
                 newitemButton.className = "gridButton";
-                let elementOfList = document.createElement("li");
+                let elementOfList = document.createElement("div");
                 elementOfList.appendChild(newitemButton);
-                document.getElementById("productsList").appendChild(elementOfList);
+                let appendedProductToTypeList = false;
+                rawProductsJson.forEach(element => {
+                    if(element.type != null && element.name == key){
+                        document.getElementById(`${element.type}`).appendChild(elementOfList);
+                        appendedProductToTypeList = true;
+                    }
+                });
+                if(!appendedProductToTypeList){
+                    productsListElement.appendChild(elementOfList);
+                }
             }
         }
     updateCartHtml();
+    })
 })
-
 
 checkoutButton.addEventListener("click", () =>{
     sessionStorage.setItem("cartCost", cartCost);
@@ -123,5 +161,16 @@ function updateCartCost(){
         }
     }
     priceElement.innerHTML = cartCost;
+}
+
+function hideInactiveDivs(){
+    productTypeParentElements.forEach(element => {
+        if(element.id != activeProductTypeDiv){
+            element.style.display = "none";
+        }else{
+            element.style.display = "block";
+        }
+    })
+
 }
 

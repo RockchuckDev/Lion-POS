@@ -1,5 +1,5 @@
 {
-    "CANDY":"candy",
-    "DRINK":"drink",
-    "FOOD":"food"
+    "candy":"candy",
+    "drink":"drink",
+    "food":"food"
 }

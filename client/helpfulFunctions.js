@@ -33,3 +33,4 @@ export function returnProductsJsonAsArray(){
     return fetch('/productsJSON')
     .then(fetchedJson => fetchedJson.json());
 }
+

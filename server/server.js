@@ -40,11 +40,6 @@ app.get('/checkout', (req, res) =>{
     })
 })
 
-app.get('/productTypes', (req, res) =>{
-    readFile("server/")
-})
-
-
 app.get('/', (request, response) => {
 
     readFile("client/home.html", "utf-8", (err, html) => {
@@ -110,6 +105,17 @@ app.post('/postOrder', (req, res) =>{
     writeFileSync(`orders/${returnDate()}.json`, JSON.stringify(currentFileContents, null, 2));
     res.send("Success!!!");
 
+})
+
+app.get("/productTypes", (req, res) =>{
+    readFile("server/types.json", "utf-8", (err, json) =>{
+        if(err){
+            res.status(500).send("Error reading types.json");
+        }else{
+            res.send(json);
+        }
+
+    })
 })
 
 app.listen(3000, '0.0.0.0', () => console.log("Available on localhost:3000"));
