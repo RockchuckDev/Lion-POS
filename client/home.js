@@ -15,13 +15,13 @@ let productTypes = [];
 const productsListElement = document.getElementById('productsList');
 let productTypeParentElements = [];
 let productTypeButtonsParentElement = document.getElementById("productTypeButtonsParent");
-let activeProductTypeDiv = "";
+let activeProductTypeDivId = "";
 
 
 
 returnProductsJsonAsArray()
     .then(array => {
-
+        //set rawProductsJson and build out orderWithMetadata
         rawProductsJson = array;
         if(sessionStorage.getItem("cart") != null && sessionStorage.getItem("cart").trim() != ""){
             orderWithMetadata = (JSON.parse(sessionStorage.getItem("cart")));
@@ -35,61 +35,20 @@ returnProductsJsonAsArray()
             })
         }
     }).then(thingy1 =>{
+
+        //fetch product types and store it in producTypes variable
         fetch("/productTypes")
         .then(responseObject => responseObject.json())
         .then(jsonObject => productTypes = jsonObject)
         .then(thingy => {
-
-            for(let typeKey in productTypes){
-                let newDiv = createAndAppendElement("div", "", productsListElement);
-                newDiv.id = `${productTypes[typeKey]}`;
-                newDiv.className = "grid";
-                productTypeParentElements.push(newDiv);
-                const newButton = createAndAppendElement("button", `${productTypes[typeKey]}`, productTypeButtonsParentElement);
-                newButton.addEventListener("click", () => {
-                    activeProductTypeDiv = `${productTypes[typeKey]}`;
-                    hideInactiveDivs();
-                })
-                createAndAppendElement("br", "", productsListElement);
-                
+            for(let key in productTypes){
+                const button = document.createElement("button");
+                productTypeButtonsParentElement.appendChild(button);
+                button.innerHTML = `${key}`;
             }
-
-            //hello
-
-        for(let key in orderWithMetadata){
-            if(key != "time" && key != "orderCost" && key != "cashOrCard"){
-                let newitemButton = document.createElement('button');
-                newitemButton.innerHTML = `${key}`;
-                let image = document.createElement("img");
-                rawProductsJson.forEach(element => {
-                    if(element.name == key){
-                        image.src = element.image;
-                    }
-                });
-                image.style.width = "200px";
-                image.style.height = "200px";
-                newitemButton.prepend(image);
-                newitemButton.addEventListener("click", () => {
-                    orderWithMetadata[key] += 1;
-                    updateCartHtml();
-                    console.log(orderWithMetadata);
-                })
-                newitemButton.className = "gridButton";
-                let elementOfList = document.createElement("div");
-                elementOfList.appendChild(newitemButton);
-                let appendedProductToTypeList = false;
-                rawProductsJson.forEach(element => {
-                    if(element.type != null && element.name == key){
-                        document.getElementById(`${element.type}`).appendChild(elementOfList);
-                        appendedProductToTypeList = true;
-                    }
-                });
-                if(!appendedProductToTypeList){
-                    productsListElement.appendChild(elementOfList);
-                }
-            }
-        }
-    updateCartHtml();
+            activeProductTypeDivId = Object.keys(productTypes)[0];
+            updateItemGrid();
+            updateCartHtml();
     })
 })
 
@@ -165,12 +124,27 @@ function updateCartCost(){
 
 function hideInactiveDivs(){
     productTypeParentElements.forEach(element => {
-        if(element.id != activeProductTypeDiv){
+        if(element.id != activeProductTypeDivId){
             element.style.display = "none";
         }else{
             element.style.display = "block";
         }
     })
 
+}
+
+function updateItemGrid(){
+    rawProductsJson.forEach(product => {
+        if(product.type == activeProductTypeDivId){
+            const box = document.createElement("button");
+            productsListElement.appendChild(box);
+            const image = document.createElement("img");
+            image.src = product.image;
+            image.width = "175px";
+            image.length = "175px";
+            box.appendChild(image);
+            createAndAppendElement("p", `${product.name}`, box);
+        }
+    })
 }
 
