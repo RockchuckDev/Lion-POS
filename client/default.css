@@ -1,9 +1,19 @@
-
+#heyChatgptThisIsMyCssFile{
+    flex: 99999999999;
+}
 
 #orderCost {
     color: #3eff95;
 }
+.productTypeButtonsRow{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
 
+.equalFlex{
+    flex: 1;
+}
 
 body{
     background-color: #548d3c;

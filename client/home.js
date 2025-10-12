@@ -41,12 +41,20 @@ returnProductsJsonAsArray()
         .then(responseObject => responseObject.json())
         .then(jsonObject => productTypes = jsonObject)
         .then(thingy => {
-            for(let key in productTypes){
+            for(let i = 0; i < productTypes.length; i++){
                 const button = document.createElement("button");
                 productTypeButtonsParentElement.appendChild(button);
-                button.innerHTML = `${key}`;
+                button.innerHTML = `${productTypes[i]}`;
+                button.addEventListener("click", () =>{
+                    activeProductTypeDivId = productTypes[i];
+                    updateItemGrid();
+                })
+                button.className = "equalFlex";
+                button.style.height ="50px";
+                button.style.fontSize = (50 * 0.8) + "px";
+                
             }
-            activeProductTypeDivId = Object.keys(productTypes)[0];
+            activeProductTypeDivId = productTypes[0];
             updateItemGrid();
             updateCartHtml();
     })
@@ -122,28 +130,22 @@ function updateCartCost(){
     priceElement.innerHTML = cartCost;
 }
 
-function hideInactiveDivs(){
-    productTypeParentElements.forEach(element => {
-        if(element.id != activeProductTypeDivId){
-            element.style.display = "none";
-        }else{
-            element.style.display = "block";
-        }
-    })
-
-}
-
 function updateItemGrid(){
+    while(productsListElement.firstChild) productsListElement.removeChild(productsListElement.firstChild);
     rawProductsJson.forEach(product => {
         if(product.type == activeProductTypeDivId){
             const box = document.createElement("button");
             productsListElement.appendChild(box);
             const image = document.createElement("img");
             image.src = product.image;
-            image.width = "175px";
-            image.length = "175px";
+            image.width = "175";
+            image.height = "175";
             box.appendChild(image);
             createAndAppendElement("p", `${product.name}`, box);
+            box.addEventListener("click", () => {
+                orderWithMetadata[product.name] += 1;
+                updateCartHtml();
+            })
         }
     })
 }
