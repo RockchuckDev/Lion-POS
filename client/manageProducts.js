@@ -10,7 +10,11 @@ const newProductImageLinkInput = document.getElementById("newProductImageLinkInp
 const productListElement = document.getElementById("productListElement");
 
 let productsJsonObject = [];
-let productTypes = {};
+let productTypes = [];
+const submitNewTypeButton = document.getElementById("submitNewProductType");
+const newProductTypeInput = document.getElementById("newProductTypeInput");
+const productTypesListElement = document.getElementById("listOfProductTypes");
+const newProductTypeSelector = document.getElementById("newProductTypeSelector");
 
 document.addEventListener("DOMContentLoaded", () =>{
 
@@ -20,11 +24,19 @@ document.addEventListener("DOMContentLoaded", () =>{
     .then(object => productTypes = object)
     .then(thingy => {
         LoadRemoteProductsJsonIntoLocalArray();
-        UpdateProductsListHtml();
+        
     })
 
-    
-
+    submitNewTypeButton.addEventListener("click", () => {
+        productTypes.push(newProductTypeInput.value);
+        newProductTypeInput.value = "";
+        fetch("/overwriteProductTypes", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(productTypes)
+        });
+        UpdateWholePageHtml();
+    })
 })
 
 
@@ -36,7 +48,7 @@ submitProduct.addEventListener("click", () => {
 
 function addNewProduct(){
         let newJson = productsJsonObject;
-        newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value), "image": `${newProductImageLinkInput.value}`});
+        newJson.push({"name":`${nameInput.value}`, "price": parseFloat(priceInput.value), "image": `${newProductImageLinkInput.value}`, "type": `${newProductTypeSelector.value}`});
 
         OverwriteProductsJsonObject();
 
@@ -44,7 +56,28 @@ function addNewProduct(){
 }
 
 
-function UpdateProductsListHtml(){
+function UpdateWholePageHtml(){
+    
+    while(productTypesListElement.firstChild) productTypesListElement.removeChild(productTypesListElement.firstChild);
+    while(newProductTypeSelector.firstChild) newProductTypeSelector.removeChild(newProductTypeSelector.firstChild);
+    productTypes.forEach(type => {
+        createAndAppendElement("option", `${type}`, newProductTypeSelector);
+        const box = createAndAppendElement("div", "", productTypesListElement);
+        box.style.display = "flex";
+        box.style.justifyContent = "space-between";
+        box.style.background = "#e0afff";
+        box.style.margin = "1%";
+        createAndAppendElement("p", `${type}`, box);
+        createAndAppendElement("button", `Remove`, box).addEventListener("click", () => {
+            productTypes.splice(productTypes.indexOf(type), 1);
+            fetch("/overwriteProductTypes", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(productTypes)
+        })
+            UpdateWholePageHtml();
+        })
+    })
 
     if(productListElement.children.length > 0)
         {
@@ -61,7 +94,6 @@ function UpdateProductsListHtml(){
         parentBox.classList.add("container");
         parentBox.classList.add("product");
         parentBox.style.height = "175px";
-        
         const leftBox = document.createElement("div");
         parentBox.appendChild(leftBox);
         leftBox.classList.add("leftEven");
@@ -78,7 +110,7 @@ function UpdateProductsListHtml(){
         createAndAppendElement("p", `${element.type}`, productInfoDiv);
         createAndAppendElement("button", "delete This Item", productInfoDiv).addEventListener("click", () =>{
         productsJsonObject.splice(productsJsonObject.indexOf(element), 1);
-            UpdateProductsListHtml();
+            UpdateWholePageHtml();
             OverwriteProductsJsonObject();
             
         })
@@ -100,7 +132,7 @@ function UpdateProductsListHtml(){
         newNameInput.className = "closeTogether";
         createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.name = newNameInput.value;
-            UpdateProductsListHtml();
+            UpdateWholePageHtml();
             OverwriteProductsJsonObject();
         });
 
@@ -109,7 +141,7 @@ function UpdateProductsListHtml(){
         newPriceInput.className = "closeTogether";
         createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.price = parseFloat(newPriceInput.value) || 0;
-            UpdateProductsListHtml();
+            UpdateWholePageHtml();
         OverwriteProductsJsonObject();
         });
         
@@ -118,7 +150,7 @@ function UpdateProductsListHtml(){
         newImageInput.className = "closeTogether";
         createAndAppendElement("button", "Submit", namePriceLinkHalf).addEventListener("click", () => {
             element.image = newImageInput.value;
-            UpdateProductsListHtml();
+            UpdateWholePageHtml();
             OverwriteProductsJsonObject();
         });
 
@@ -126,6 +158,7 @@ function UpdateProductsListHtml(){
         typeHalf.classList.add("rightEven");
         const dropDown = createAndAppendElement("select", "", typeHalf);
         dropDown.style.width = "100px";
+        while(dropDown.firstChild) dropDown.removeChild(dropDown.firstChild);
         for(let key in productTypes){
             const option = document.createElement("option");
             option.textContent = productTypes[key];
@@ -136,7 +169,7 @@ function UpdateProductsListHtml(){
         changeTypeButton.addEventListener('click', () =>{
             element.type = dropDown.value;
             OverwriteProductsJsonObject();
-            UpdateProductsListHtml();
+            UpdateWholePageHtml();
         })
 
 
@@ -152,11 +185,11 @@ function OverwriteProductsJsonObject(){
 }
 
 function LoadRemoteProductsJsonIntoLocalArray(){
-    fetch('/productsJSON')
+    return fetch('/productsJSON')
     .then(fetchedData => fetchedData.json())
     .then(jsonObject => {
         productsJsonObject = jsonObject;
-        UpdateProductsListHtml();
+        UpdateWholePageHtml();
     })
 }
 

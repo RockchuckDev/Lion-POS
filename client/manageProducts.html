@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <h1>Le product manager page</h1>
+<button onclick="window.location.href='/'">Return To Home Page</button>
 
 <head>
     <link rel="stylesheet" href="/client/default.css"></link>
@@ -28,9 +29,11 @@
         <input type="number" id="newProductPriceInput"></input>
         <p>Image (paste link)</p>
         <input id="newProductImageLinkInput"></input>
+        <p>Type</p>
+        <select id="newProductTypeSelector"></select>
         <button id="submitNewProductButton">Submit</button>
         <h1>Types!!!</h1>
-        <ul id="listOfProductTypes"></ul>
+        <div id="listOfProductTypes"></div>
         <p>Add New Type</p>
         <input id="newProductTypeInput"></input><button id="submitNewProductType">Submit</button>
 
@@ -38,8 +41,5 @@
     </div>
 
 </div>
-
-<button onclick="window.location.href='/'">Return To Home Page</button>
-
 
 

@@ -118,4 +118,14 @@ app.get("/productTypes", (req, res) =>{
     })
 })
 
+app.post("/overwriteProductTypes", (req, res) => {
+    try{
+        writeFileSync("server/types.json", JSON.stringify(req.body, null, 2));
+    }catch (err){
+        res.status("500").send("Error overwriting types.json");
+
+    }
+    res.send("Success!!!");
+})
+
 app.listen(3000, '0.0.0.0', () => console.log("Available on localhost:3000"));
